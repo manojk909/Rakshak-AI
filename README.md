@@ -24,9 +24,9 @@
 
 | Surface | URL |
 |---|---|
-| Frontend (Vercel) | `https://rakshak-ai.vercel.app` |
-| Backend API (Render) | `https://rakshak-ai-backend.onrender.com/api/health` |
-| API Docs (Swagger) | `https://rakshak-ai-backend.onrender.com/docs` |
+| Frontend (Vercel) | `https://rakshak-ai-khaki.vercel.app` |
+| Backend API (Render) | `https://rakshak-ai-backend-6os2.onrender.com/api/health` |
+| API Docs (Swagger) | `https://rakshak-ai-backend-6os2.onrender.com/docs` |
 
 Demo operator login: `admin` / `rakshak2026`
 
