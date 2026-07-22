@@ -6,7 +6,7 @@
 
 **India's first AI-powered Digital Public Safety Intelligence platform** — shifting law enforcement from reactive complaint filing to predictive neutralisation of digital arrest scams, fraud networks, and counterfeit currency.
 
-`ET AI Hackathon 2026 · PS6 · Digital Public Safety`
+`Digital Public Safety`
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)
@@ -14,6 +14,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Gemini-1.5_Flash-4285F4?logo=google&logoColor=white)
 ![Mapbox](https://img.shields.io/badge/Mapbox-GL_JS-000000?logo=mapbox&logoColor=white)
+![Sarvam AI](https://img.shields.io/badge/Sarvam_AI-Indic_Audio-FF9933?logoColor=white)
 
 </div>
 
@@ -135,10 +136,6 @@ Live at `GET /api/dashboard/metrics` and on the dashboard strip — precision, r
 | Technical Excellence | 20% | Multi-service AI architecture, SHA-256 custody chain, NetworkX PageRank, OpenCV structural checks, PII-safe by design |
 | Scalability | 15% | Stateless FastAPI, MongoDB Atlas, H3 spatial indexing, polling-based live updates — no heavyweight infra (no Kafka/Redis/Neo4j) |
 | User Experience | 15% | Command center + citizen chatbot + one-tap counterfeit check, 6 Indian languages, works in demo mode even if API is down |
-
-## 👥 Team
-
-SRMU Group — ET AI Hackathon 2026, PS6.
 
 ## 📄 License
 
