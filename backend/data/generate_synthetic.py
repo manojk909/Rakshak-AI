@@ -69,7 +69,7 @@ def generate_fraud_cases(n: int = 500) -> list:
             "case_id": str(uuid.uuid4()), "timestamp": ts,
             "victim_name": f"{random.choice(INITIALS)}. {random.choice(SURNAMES)}",
             "victim_location_city": city["name"], "victim_location_lat": lat, "victim_location_lng": lng,
-            "victim_location_h3": h3.geo_to_h3(lat, lng, 7),
+            "victim_location_h3": h3.latlng_to_cell(lat, lng, 7),
             "caller_number_masked": _masked_number(),
             "scam_type": scam_type, "authority_impersonated": authority,
             "scam_probability": prob,
@@ -168,7 +168,7 @@ def generate_crime_locations(cases: list) -> list:
     def loc(lat, lng, city, state, crime_type, severity):
         return {"location_id": str(uuid.uuid4()), "lat": lat, "lng": lng, "city": city, "state": state,
                 "crime_type": crime_type, "case_id": random.choice(cases)["case_id"],
-                "h3_index": h3.geo_to_h3(lat, lng, 7), "severity": severity, "timestamp": _recent_ts()}
+                "h3_index": h3.latlng_to_cell(lat, lng, 7), "severity": severity, "timestamp": _recent_ts()}
 
     for _ in range(300):
         c = random.choice(CITIES)

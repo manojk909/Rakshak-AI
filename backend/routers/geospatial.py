@@ -52,7 +52,7 @@ async def clusters():
     hexes = []
     async for doc in db.crime_locations.aggregate(pipeline):
         try:
-            lat, lng = h3.h3_to_geo(doc["_id"])
+            lat, lng = h3.h3_to_latlng(doc["_id"])
         except Exception:
             continue
         types, sevs = doc["types"], doc["severities"]
@@ -111,7 +111,7 @@ async def patrol_priority(limit: int = 5, user: dict = Depends(get_current_user)
     results = []
     for h3_index, data in ranked:
         try:
-            lat, lng = h3.h3_to_geo(h3_index)
+            lat, lng = h3.h3_to_latlng(h3_index)
         except Exception:
             continue
         dominant = max(set(data["types"]), key=data["types"].count)

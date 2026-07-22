@@ -42,7 +42,7 @@ async def analyze_text(request: Request, body: AnalyzeTextRequest, response: Res
             "case_id": case_id, "timestamp": now,
             "victim_name": "Anonymous Reporter", "victim_location_city": "Delhi",
             "victim_location_lat": 28.6139, "victim_location_lng": 77.2090,
-            "victim_location_h3": h3.geo_to_h3(28.6139, 77.2090, 7),
+            "victim_location_h3": h3.latlng_to_cell(28.6139, 77.2090, 7),
             "caller_number_masked": "+91 **** ****",
             "scam_type": analysis.get("scam_type", "unknown"),
             "authority_impersonated": analysis.get("authority_impersonated"),
