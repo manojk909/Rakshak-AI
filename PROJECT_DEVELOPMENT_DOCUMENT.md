@@ -260,6 +260,10 @@ Here is a high-level overview of our key endpoints:
 | `/api/geospatial/hotspots` | GET | Returns H3 aggregated hex bin data for the map overlay. |
 | `/api/dashboard/kpis` | GET | Aggregates high-level metrics (total threats neutralized, active syndicates). |
 | `/api/counterfeit_detection/analyze-note`| POST | Accepts an image file (max 8MB), runs OpenCV checks, returns authenticity score. |
+| `/api/persona/create-inquiry` | POST | Creates a Persona identity verification inquiry for officer KYC. |
+| `/api/persona/status/{reference_id}` | GET | Returns the current verification status of an officer. |
+| `/api/persona/webhook` | POST | Receives Persona webhook events (inquiry.completed, inquiry.failed). |
+| `/api/persona/demo-complete` | POST | Demo-only endpoint to simulate successful verification. |
 
 **Middleware and Protection:**
 We implemented `slowapi` to enforce rate limiting (e.g., 30 requests/minute on the analysis endpoints) to prevent abuse and API exhaustion. 
@@ -606,6 +610,7 @@ Ensuring a snappy user experience was critical for an intelligence dashboard.
 Since RAKSHAK AI handles sensitive public safety data, security was a primary architectural driver, even in a hackathon context.
 
 - **Authentication:** Implemented secure JWT (JSON Web Token) authentication using `python-jose`. Tokens have a strict 24-hour expiry, and passwords are comprehensively hashed using `bcrypt` via `passlib`.
+- **Identity Verification (KYC via Persona):** We integrated Persona (withpersona.com) for officer identity verification. Before accessing the Intelligence Command Center, operators must complete a government ID verification flow -- uploading a photo ID (Aadhaar, PAN, Passport, or Driving License), capturing a live selfie, and passing AI-powered liveness detection. The backend stores verification records in a dedicated `officer_verifications` MongoDB collection with fields for `reference_id`, `inquiry_id`, `status`, `provider`, and `verified_at`. We built the integration as a completely isolated module (`routers/persona.py`) with four endpoints, ensuring zero coupling to existing authentication logic. The frontend `PersonaVerificationModal` component implements a step-by-step wizard (Intro > ID Upload > Selfie > Processing > Success) with a smooth progress animation. Critically, we built a demo simulation mode that activates when no Persona API keys are configured, ensuring the feature works flawlessly during hackathon presentations without relying on external API availability. Verified officers receive a green "Verified Officer" badge in the dashboard header, persisted via `localStorage` for session continuity.
 - **PII Redaction Engine:** This is our most critical security feature. We built a regex-based interceptor that scans all incoming text and LLM outputs. It masks Aadhaar numbers, PAN cards, phone numbers, and emails with `XXXX` *before* the data is persisted to MongoDB.
 - **Evidence Chain of Custody:** To ensure admissibility, every uploaded piece of evidence (audio, image, text) is hashed using SHA-256 along with a UTC timestamp upon ingestion, creating an immutable cryptographic fingerprint.
 - **Rate Limiting:** We used `slowapi` to enforce strict rate limits (e.g., 30 requests per minute per IP) to prevent DDoS attacks and API abuse.
@@ -649,6 +654,7 @@ While RAKSHAK AI is highly functional, we have a clear roadmap for scaling it to
 - **Mobile Application:** Develop a native React Native app for field officers, allowing them to receive push notifications and upload evidence directly from their devices.
 - **Integration with CCTNS:** Build secure integration pipelines to pull real historical crime data from the Crime and Criminal Tracking Network & Systems (CCTNS).
 - **Expanded Multilingual Support:** Extend Sarvam AI integration to support 15+ regional Indian languages for truly inclusive citizen reporting.
+- **Persona Production KYC:** Upgrade the current Persona sandbox integration to production mode with HMAC-SHA256 webhook signature validation, enabling real government ID verification for onboarding LEA officers. Extend KYC to high-priority citizen complaints requiring identity confirmation before escalation.
 
 ---
 
