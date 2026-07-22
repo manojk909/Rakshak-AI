@@ -1,0 +1,44 @@
+{
+  "10": {
+    "security_thread_x_pct": [0.38, 0.44],
+    "microprint_zone": {"x_pct": [0.14, 0.32], "y_pct": [0.58, 0.68]},
+    "serial_number_band": {"x_pct": [0.62, 0.93], "y_pct": [0.78, 0.90]},
+    "latent_image_region": {"x_pct": [0.78, 0.88], "y_pct": [0.30, 0.55]}
+  },
+  "20": {
+    "security_thread_x_pct": [0.38, 0.44],
+    "microprint_zone": {"x_pct": [0.14, 0.33], "y_pct": [0.56, 0.67]},
+    "serial_number_band": {"x_pct": [0.62, 0.93], "y_pct": [0.78, 0.90]},
+    "latent_image_region": {"x_pct": [0.78, 0.88], "y_pct": [0.30, 0.55]}
+  },
+  "50": {
+    "security_thread_x_pct": [0.40, 0.46],
+    "microprint_zone": {"x_pct": [0.15, 0.34], "y_pct": [0.56, 0.66]},
+    "serial_number_band": {"x_pct": [0.61, 0.92], "y_pct": [0.79, 0.91]},
+    "latent_image_region": {"x_pct": [0.79, 0.89], "y_pct": [0.30, 0.55]}
+  },
+  "100": {
+    "security_thread_x_pct": [0.41, 0.47],
+    "microprint_zone": {"x_pct": [0.15, 0.35], "y_pct": [0.55, 0.65]},
+    "serial_number_band": {"x_pct": [0.60, 0.92], "y_pct": [0.08, 0.14]},
+    "latent_image_region": {"x_pct": [0.80, 0.90], "y_pct": [0.30, 0.55]}
+  },
+  "200": {
+    "security_thread_x_pct": [0.42, 0.48],
+    "microprint_zone": {"x_pct": [0.15, 0.35], "y_pct": [0.55, 0.65]},
+    "serial_number_band": {"x_pct": [0.60, 0.92], "y_pct": [0.08, 0.14]},
+    "latent_image_region": {"x_pct": [0.80, 0.90], "y_pct": [0.30, 0.55]}
+  },
+  "500": {
+    "security_thread_x_pct": [0.42, 0.48],
+    "microprint_zone": {"x_pct": [0.15, 0.35], "y_pct": [0.55, 0.65]},
+    "serial_number_band": {"x_pct": [0.60, 0.92], "y_pct": [0.08, 0.14]},
+    "latent_image_region": {"x_pct": [0.80, 0.90], "y_pct": [0.30, 0.55]}
+  },
+  "2000": {
+    "security_thread_x_pct": [0.43, 0.49],
+    "microprint_zone": {"x_pct": [0.16, 0.36], "y_pct": [0.54, 0.64]},
+    "serial_number_band": {"x_pct": [0.60, 0.92], "y_pct": [0.08, 0.14]},
+    "latent_image_region": {"x_pct": [0.80, 0.90], "y_pct": [0.30, 0.55]}
+  }
+}
