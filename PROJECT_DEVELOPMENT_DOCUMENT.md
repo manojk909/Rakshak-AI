@@ -7,7 +7,7 @@
 
 ### 1. Project Overview
 
-When we first sat down to brainstorm for the ET AI Hackathon, the problem statement "PS6 - Digital Public Safety" immediately caught our attention. We wanted to build something that wasn't just another shiny toy, but a system that could genuinely protect people. The news over the past few months has been flooded with heartbreaking stories. Just last week, we read about a retired teacher who lost her life savings of â‚¹45 lakhs to a "digital arrest" scam. The scammers posed as customs officials, fabricated a fake Supreme Court warrant, and forced her to stay on a video call for 48 hours. This wasn't an isolated incident. According to the Indian Cybercrime Coordination Centre (I4C), Indians lost a staggering â‚¹1,776 Crores to digital arrest scams alone in the first few months of this year. The sheer scale and audacity of these operations are terrifying. 
+When we first sat down to brainstorm for the ET AI Hackathon, the problem statement "PS6 - Digital Public Safety" immediately caught our attention. We wanted to build something that wasn't just another shiny toy, but a system that could genuinely protect people. The news over the past few months has been flooded with heartbreaking stories. Just last week, we read about a retired teacher who lost her life savings of 45 lakhs to a "digital arrest" scam. The scammers posed as customs officials, fabricated a fake Supreme Court warrant, and forced her to stay on a video call for 48 hours. This wasn't an isolated incident. According to the Indian Cybercrime Coordination Centre (I4C), Indians lost a staggering 1,776 Crores to digital arrest scams alone in the first few months of this year. The sheer scale and audacity of these operations are terrifying. 
 
 As we dug deeper, we realized the core issue: law enforcement agencies (LEAs) in India are operating reactively. When a citizen is scammed, they file a complaint on the National Cyber Crime Reporting Portal (NCRP). By the time the police analyze the complaint, request bank details, and track the funds, the money has already been laundered through complex networks of mule accounts and cryptocurrency. The damage is done. The scammers operate with impunity, often from organized fraud call centers across borders or within specific hotspots in the country. There are over 10 lakh cybercrime complaints sitting on the NCRP, and the volume is only increasing. The system is overwhelmed.
 
@@ -16,7 +16,7 @@ That's why we conceptualized **RAKSHAK AI**: India's first AI-powered Digital Pu
 We designed Rakshak AI with three primary user personas in mind:
 1.  **The LEA Operator:** The police officer sitting in a cyber cell who needs a unified dashboard to monitor live threats, analyze evidence, and track down fraud rings.
 2.  **The Citizen:** The everyday Indian, perhaps someone's grandparent, who receives a suspicious WhatsApp call and needs immediate, multilingual assistance to verify if they are being scammed.
-3.  **The Inter-Agency Coordinator:** The higher-level official who looks at the big pictureâ€”cross-state fraud networks, hotspot mapping, and resource allocation.
+3.  **The Inter-Agency Coordinator:** The higher-level official who looks at the big picture"cross-state fraud networks, hotspot mapping, and resource allocation.
 
 To achieve this, we set out with ambitious objectives. We needed real-time scam detection capable of parsing text, audio, and images. We needed a robust way to map out fraud networks, connecting isolated phone numbers and bank accounts into visible syndicates. And crucially, we needed a citizen-facing interface that was accessible, multilingual, and frictionless. 
 
@@ -90,40 +90,42 @@ Here is our core component flow:
 
 Our backend folder structure reflects this modularity:
 
-```text
+```
 backend/
-â”œâ”€â”€ app/
-â”‚   â”œâ”€â”€ main.py              # Application entry point, startup events
-â”‚   â”œâ”€â”€ api/
-â”‚   â”‚   â”œâ”€â”€ routers/         # API endpoints grouped by feature
-â”‚   â”‚   â”‚   â”œâ”€â”€ auth.py
-â”‚   â”‚   â”‚   â”œâ”€â”€ scam_detection.py
-â”‚   â”‚   â”‚   â”œâ”€â”€ graph_intelligence.py
-â”‚   â”‚   â”‚   â”œâ”€â”€ citizen_shield.py
-â”‚   â”‚   â”‚   â”œâ”€â”€ geospatial.py
-â”‚   â”‚   â”‚   â”œâ”€â”€ dashboard.py
-â”‚   â”‚   â”‚   â””â”€â”€ counterfeit_detection.py
-â”‚   â”œâ”€â”€ core/
-â”‚   â”‚   â”œâ”€â”€ config.py        # Environment variables
-â”‚   â”‚   â”œâ”€â”€ security.py      # JWT, password hashing
-â”‚   â”‚   â””â”€â”€ exceptions.py
-â”‚   â”œâ”€â”€ models/
-â”‚   â”‚   â””â”€â”€ schemas.py       # Pydantic models (FraudCase, GraphNode, etc.)
-â”‚   â”œâ”€â”€ services/
-â”‚   â”‚   â”œâ”€â”€ gemini_service.py # Integration with Gemini 1.5 Flash
-â”‚   â”‚   â”œâ”€â”€ graph_service.py  # NetworkX logic (PageRank, centrality)
-â”‚   â”‚   â”œâ”€â”€ audio_service.py  # Whisper & librosa spoof detection
-â”‚   â”‚   â”œâ”€â”€ counterfeit_service.py # OpenCV heuristic checks
-â”‚   â”‚   â”œâ”€â”€ sarvam_service.py # Sarvam AI for TTS/Translation
-â”‚   â”‚   â”œâ”€â”€ alert_service.py  # Dispatch simulation
-â”‚   â”‚   â”œâ”€â”€ pii_redactor.py   # Regex-based redaction
-â”‚   â”‚   â””â”€â”€ evidence_hasher.py# SHA-256 chain of custody
-â”‚   â””â”€â”€ utils/
-â”‚       â””â”€â”€ db.py            # MongoDB connection logic
-â”œâ”€â”€ data/
-â”‚   â””â”€â”€ generate_synthetic.py # Data seeding script
-â”œâ”€â”€ requirements.txt
-â””â”€â”€ .env
+|-- main.py                    # Application entry point, startup events
+|-- routers/                   # API endpoints grouped by feature
+|   |-- auth.py
+|   |-- scam_detection.py
+|   |-- graph_intelligence.py
+|   |-- citizen_shield.py
+|   |-- geospatial.py
+|   |-- dashboard.py
+|   +-- counterfeit_detection.py
+|-- models/
+|   |-- database.py            # MongoDB connection & indexing
+|   +-- schemas.py             # Pydantic models (FraudCase, GraphNode, etc.)
+|-- services/
+|   |-- gemini_service.py      # Integration with Gemini 1.5 Flash
+|   |-- graph_service.py       # NetworkX logic (PageRank, centrality)
+|   |-- audio_service.py       # Whisper & librosa spoof detection
+|   |-- counterfeit_service.py # OpenCV heuristic checks
+|   |-- sarvam_service.py      # Sarvam AI for TTS/Translation
+|   |-- alert_service.py       # Dispatch simulation
+|   |-- pii_redactor.py        # Regex-based PII redaction
+|   |-- metrics_service.py     # Precision/recall computation
+|   +-- evidence_hasher.py     # SHA-256 chain of custody
+|-- utils/
+|   |-- security.py            # JWT, password hashing
+|   +-- rate_limiter.py        # slowapi config
+|-- data/
+|   |-- generate_synthetic.py  # Data seeding script (500 cases, 800 nodes)
+|   |-- seed_database.py       # DB bootstrapper
+|   |-- scam_templates.json    # I4C/MHA-modeled scam scripts
+|   |-- indian_cities.json     # 50 cities with lat/lng
+|   +-- note_security_features.json  # RBI note specifications
+|-- requirements.txt
+|-- Dockerfile
++-- .env
 ```
 
 This structure allowed us to work in parallel. One team member could build the `graph_service` while another worked on the `gemini_service` without merge conflicts.
@@ -159,7 +161,7 @@ Our startup script in `main.py` checks if the MongoDB collections are empty. If 
 We started with caffeine and a blank canvas. We initialized the Next.js app and the FastAPI backend. The first major task was setting up the MongoDB Atlas connection. We went with the M0 free tier to keep things lightweight. By evening, we had the basic auth router working with JWTs (`python-jose`) and bcrypt hashing (`passlib`). We established the base Pydantic schemas. It felt good to see a `200 OK` on `/api/login`.
 
 **Day 2: AI Integration and Privacy**
-This was heavy lifting. We integrated Gemini 1.5 Flash via `gemini_service.py`. We chose Flash because of its speedâ€”crucial for that <2s requirement. We spent hours refining the prompt to force Gemini to return strict JSON containing the threat level, category, and extracted entities. 
+This was heavy lifting. We integrated Gemini 1.5 Flash via `gemini_service.py`. We chose Flash because of its speed"crucial for that <2s requirement. We spent hours refining the prompt to force Gemini to return strict JSON containing the threat level, category, and extracted entities. 
 Simultaneously, we built the `pii_redactor.py`. We couldn't send raw transcripts containing fake Aadhaar numbers to Gemini. We wrote extensive regex patterns to catch PAN cards, phone numbers, and emails, masking them with `[REDACTED_PHONE]`, etc. 
 
 *The Bug of the Day:* Gemini occasionally ignored the JSON instruction and wrapped the output in markdown code blocks (` ```json ... ``` `). We had to implement a regex fallback parser in `gemini_service.py` to strip the markdown and parse the raw JSON string safely.
@@ -480,7 +482,7 @@ Building India's first AI-powered Digital Public Safety Intelligence platform du
 - **Final solution:** We created a singleton promise wrapper around the fetch call in our API utility.
 - **Lessons learned:** Network request deduplication is a critical optimization in React architectures.
 
-### 22. H3 API Breaking Changes v3â†’v4
+### 22. H3 API Breaking Changes v3 to v4
 - **Challenge:** Our geospatial aggregation code completely broke after upgrading the package.
 - **Why it happened:** Uber's H3 library underwent a major version upgrade where almost every function was renamed for consistency (e.g., `h3_to_geo` became `h3_to_latlng`).
 - **Impact:** All map heatmaps failed to render.
