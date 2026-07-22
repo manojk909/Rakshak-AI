@@ -1,11 +1,19 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Shield, User, Banknote, Network } from 'lucide-react';
+import { ArrowLeft, Shield, ShieldCheck, User, Banknote, Network, Fingerprint } from 'lucide-react';
+import PersonaVerificationModal from '@/components/persona/PersonaVerificationModal';
 
 export default function DashboardHeader({ isDemoMode }: { isDemoMode?: boolean }) {
   const [time, setTime] = useState('');
   const [showOperator, setShowOperator] = useState(false);
+  const [showPersona, setShowPersona] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+
+  // Check verification status from localStorage on mount
+  useEffect(() => {
+    setIsVerified(localStorage.getItem('rakshak_officer_verified') === 'true');
+  }, []);
 
   useEffect(() => {
     const tick = () =>
@@ -44,6 +52,19 @@ export default function DashboardHeader({ isDemoMode }: { isDemoMode?: boolean }
             Operational
           </span>
           <span className="font-mono text-sm text-white/80 tabular-nums">{time}</span>
+          {/* Verification Badge / Button */}
+          {isVerified ? (
+            <span className="flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-1 rounded-lg bg-green-500/15 text-green-400 border border-green-500/30">
+              <ShieldCheck className="w-3.5 h-3.5" /> VERIFIED OFFICER
+            </span>
+          ) : (
+            <button
+              onClick={() => setShowPersona(true)}
+              className="flex items-center gap-1.5 text-xs text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg px-3 py-1.5 transition-colors"
+            >
+              <Fingerprint className="w-4 h-4" /> Verify Identity
+            </button>
+          )}
           <Link
             href="/networks"
             className="flex items-center gap-2 text-xs text-white/70 hover:text-white border border-white/20 hover:border-[#ccff00] rounded-lg px-3 py-1.5 transition-colors"
@@ -148,6 +169,18 @@ export default function DashboardHeader({ isDemoMode }: { isDemoMode?: boolean }
             </div>
           </div>
         </div>
+      )}
+
+      {/* Persona Identity Verification Modal */}
+      {showPersona && (
+        <PersonaVerificationModal
+          referenceId="operator-alpha-01"
+          onSuccess={() => {
+            setShowPersona(false);
+            setIsVerified(true);
+          }}
+          onCancel={() => setShowPersona(false)}
+        />
       )}
     </>
   );

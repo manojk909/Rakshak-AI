@@ -83,4 +83,10 @@ export async function analyzeNote(file: File, denomination: number): Promise<Cou
   return data;
 }
 
+// ── Persona Identity Verification ──────────────────────────────────────────
+export const createPersonaInquiry = (referenceId: string, name = 'Officer') =>
+  api.post('/persona/create-inquiry', { reference_id: referenceId, name }).then((r) => r.data);
+export const getPersonaStatus = (referenceId: string) =>
+  api.get(`/persona/status/${referenceId}`).then((r) => r.data);
+
 export default api;

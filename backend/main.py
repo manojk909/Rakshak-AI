@@ -68,7 +68,7 @@ app.add_middleware(
 )
 
 # Routers
-from routers import auth, scam_detection, graph_intelligence, citizen_shield, geospatial, dashboard, counterfeit_detection  # noqa: E402
+from routers import auth, scam_detection, graph_intelligence, citizen_shield, geospatial, dashboard, counterfeit_detection, persona  # noqa: E402
 
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(scam_detection.router, prefix="/api/scam", tags=["scam-detection"])
@@ -77,6 +77,7 @@ app.include_router(citizen_shield.router, prefix="/api/citizen", tags=["citizen-
 app.include_router(geospatial.router, prefix="/api/geo", tags=["geospatial"])
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["dashboard"])
 app.include_router(counterfeit_detection.router, prefix="/api/counterfeit", tags=["counterfeit"])
+app.include_router(persona.router, prefix="/api/persona", tags=["persona-idv"])
 
 
 @app.get("/api/health")
